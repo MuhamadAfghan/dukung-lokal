@@ -9,18 +9,20 @@ import {
   UserCog,
   House,
   DoorClosed,
+  User,
 } from "lucide-react";
 import SurveiUmkmModal from "./survei-umkm";
 import useModalSurveiStore from "@/store/modalSurveiStore";
 import AuthModal from "./login";
-import L from "leaflet";
 import Cookies from "js-cookie";
 import useTokenStore from "@/hook/useTokenStore";
+import useModalLoginStore from "@/store/modalLoginStore";
 
 export default function ExpandableFAB() {
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef(null);
   const { openSurveiModal } = useModalSurveiStore();
+  const { openLoginModal } = useModalLoginStore();
 
   const logoutTrigger = () => {
     //get current url
@@ -56,6 +58,17 @@ export default function ExpandableFAB() {
       href: "/papan-peringkat",
     },
   ];
+
+  if (!useTokenStore((state) => state.token)) {
+    menuItems.push(
+      {
+        icon: <User size={24} />,
+        label: "Login",
+        color: "bg-red-600",
+        onClick: openLoginModal,
+      },
+    );
+  }
 
   if (useTokenStore((state) => state.token)) {
     menuItems.push(
@@ -117,11 +130,10 @@ export default function ExpandableFAB() {
                 window.location.pathname !== item.href && (
                   <div
                     key={item.label}
-                    className={`relative group transition-all duration-500 ${
-                      isOpen
-                        ? "translate-y-0 opacity-100"
-                        : "translate-y-16 opacity-0 -z-999"
-                    }`}
+                    className={`relative group transition-all duration-500 ${isOpen
+                      ? "translate-y-0 opacity-100"
+                      : "translate-y-16 opacity-0 -z-999"
+                      }`}
                     style={{
                       transitionDelay: isOpen
                         ? `${(menuItems.length - index - 1) * 100}ms`
@@ -143,6 +155,8 @@ export default function ExpandableFAB() {
           </div>
         </div>
 
+
+
         <button
           onClick={() => setIsOpen(!isOpen)}
           className={`
@@ -154,9 +168,8 @@ export default function ExpandableFAB() {
         >
           <EllipsisVertical
             size={24}
-            className={`transform transition-transform duration-500 ${
-              isOpen ? "rotate-90" : "rotate-0"
-            }`}
+            className={`transform transition-transform duration-500 ${isOpen ? "rotate-90" : "rotate-0"
+              }`}
           />
         </button>
       </div>

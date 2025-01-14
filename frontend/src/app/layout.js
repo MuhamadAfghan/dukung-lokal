@@ -16,8 +16,11 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <head>
+        <link rel="icon" href="./dl_icon.svg" sizes="any" />
+      </head>
       <body
-        className={`${bricolageGrotesque.className} antialiased bg-[#fefefe]`}
+        className={`${bricolageGrotesque.className} antialiased bg-[#fefefe] overflow-x-hidden`}
       >
         {children}
         <Toaster position="top-right" reverseOrder={false} />
