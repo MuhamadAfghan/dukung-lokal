@@ -1,0 +1,85 @@
+
+
+.custom-popup .leaflet-popup-content-wrapper {
+  width: 420px !important;
+  background: #fff !important;
+  padding: 0;
+  border-radius: 12px;
+}
+.custom-popup .leaflet-popup-content {
+  width: 100% !important;
+  margin: 0;
+  padding: 0;
+}
+.custom-popup .leaflet-popup-content img {
+  width: 100%;
+  /* border-radius: 12px 12px 0 0; */
+  height: 140px;
+  object-fit: cover;
+}
+
+.custom-popup .leaflet-popup-content h1 {
+  margin: 0 !important;
+}
+
+.custom-popup .leaflet-popup-content p {
+  margin: 0.25rem 0 !important;
+}
+
+.leaflet-control {
+  margin-right: 1.7rem !important ;
+}
+
+.leaflet-routing-container {
+  display: none;
+  white-space: nowrap;
+  opacity: 0;
+}
+
+/* Marker Denyut */
+
+.pulsatingDot {
+  background-color: #1da1f2;
+  border-radius: 50%;
+  box-sizing: border-box;
+  height: 20px;
+  width: 20px;
+  border: 3px solid #fff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.pulsatingDot:before {
+  animation: pulseRing 1.5s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+  background-color: #1da1f2;
+  border-radius: 45px;
+  content: "";
+  display: block;
+  height: 300%;
+  left: -100%;
+  position: relative;
+  top: -100%;
+  width: 300%;
+}
+
+@keyframes pulseRing {
+  0% {
+    transform: scale(0.5);
+  }
+  80%,
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Tooltip */
+
+.leaflet-tooltip.leaflet-zoom-animated.leaflet-tooltip-top {
+  background: transparent;
+  box-shadow: none !important;
+  border: none !important;
+  pointer-events: auto !important;
+}
+
+.leaflet-tooltip::before {
+  display: none;
+}
